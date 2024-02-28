@@ -1,0 +1,27 @@
+﻿@page "/"
+@using System.Security.Cryptography.X509Certificates
+
+<PageTitle>Home</PageTitle>
+
+<h1>Hello, world!</h1>
+Welcome to your new app.
+
+<button @onclick="PlusButton" class="btn btn-primary">DAS BUTTON</button>
+
+
+<button name="negativeButton" @onclick="MinusButton"> DAS NEGATIVE BUTTON</button>
+
+<h1> @test</h1>
+
+@code {
+    int test = 0;
+    public void PlusButton()
+    {
+        test++;
+    }
+    private void MinusButton()
+    {
+        test--;
+    }
+
+}

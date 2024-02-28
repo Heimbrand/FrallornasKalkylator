@@ -1,0 +1,31 @@
+﻿@page "/Calculator"
+@rendermode InteractiveWebAssembly
+
+
+<h3>Calculator</h3>
+
+@using MudBlazor
+@inherits LayoutComponentBase
+
+<MudThemeProvider />
+<MudDialogProvider />
+<MudSnackbarProvider />
+
+<MudLayout>
+    <MudAppBar>
+        My Application
+    </MudAppBar>
+    <MudDrawer Open="true">
+
+    </MudDrawer>
+    <MudMainContent>
+        @Body
+    </MudMainContent>
+</MudLayout>
+
+
+
+
+@code {
+    
+}
