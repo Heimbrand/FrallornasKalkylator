@@ -1,10 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations;
-using DataAccess;
+﻿using DataAccess;
 
 namespace Common;
 
 public class CalcService(CalcHistoryService calculationHistoryService)
 {
+    public CalcHistoryService CalcHistoryService { get; set; } = calculationHistoryService;
 
     public decimal Calculate(decimal numberOne, decimal numberTwo, string operation)
     {
@@ -26,6 +26,7 @@ public class CalcService(CalcHistoryService calculationHistoryService)
             Result = result
         };
         calculationHistoryService.CalculationList.Add(calculationModel);
+
         return result;
     }
 }

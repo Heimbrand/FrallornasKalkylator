@@ -10,6 +10,7 @@
     <ProjectReference Include="..\..\Common\Common.csproj" />
     <ProjectReference Include="..\FrallornasKalkylator.Client\FrallornasKalkylator.Client.csproj" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="8.0.1" />
+    <PackageReference Include="MudBlazor" Version="6.16.0" />
   </ItemGroup>
 
   <ItemGroup>

@@ -4,5 +4,5 @@ namespace Common;
 
 public class CalcHistoryService
 {
-    public List<CalculationModel> CalculationList { get; set; }
+    public List<CalculationModel> CalculationList { get; set; } = new();
 }

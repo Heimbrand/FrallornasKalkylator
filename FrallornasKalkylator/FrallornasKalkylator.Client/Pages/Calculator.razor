@@ -1,31 +1,60 @@
 ﻿@page "/Calculator"
 @rendermode InteractiveWebAssembly
-
-
-<h3>Calculator</h3>
-
-@using MudBlazor
+@using Common
 @inherits LayoutComponentBase
 
-<MudThemeProvider />
-<MudDialogProvider />
-<MudSnackbarProvider />
-
-<MudLayout>
-    <MudAppBar>
-        My Application
-    </MudAppBar>
-    <MudDrawer Open="true">
-
-    </MudDrawer>
-    <MudMainContent>
-        @Body
-    </MudMainContent>
-</MudLayout>
+<PageTitle>Calculator</PageTitle>
+<h3>Calculator</h3>
 
 
 
+<MudNumericField @bind-Value="@numberOne" Label="Enter a number" Format="F1" Variant="Variant.Outlined" />
 
-@code {
-    
-}
+<MudForm>
+    <MudRadioGroup @bind-Value="@SelectedOption">
+        <MudRadio Value="@("+")" Color="Color.Primary">+</MudRadio>
+        <MudRadio Value="@("-")" Color="Color.Primary">-</MudRadio>
+        <MudRadio Value="@("*")" Color="Color.Primary">*</MudRadio>
+        <MudRadio Value="@("/")" Color="Color.Primary">/</MudRadio>
+    </MudRadioGroup>
+</MudForm>
+
+<div class="d-flex align-center">
+
+    <MudText Class="ml-4">Selected Option: @SelectedOption</MudText>
+    </div>
+
+    <MudNumericField @bind-Value="@numberTwo" Label="Enter a number" Format="F1" Variant="Variant.Outlined" />
+
+    <MudButton Variant="Variant.Filled" Color="Color.Primary" Class="ma-4" OnClick="@AssignResultValue">Calculate! :D</MudButton>
+
+    <MudTextField @bind-Value="Result" Label="Result" ReadOnly="true" Variant="Variant.Outlined" />
+
+
+    <Virtualize Items="CalcService.CalcHistoryService.CalculationList">
+        <div class="card-outline">
+            <div class="card-body">
+                <h1>@context.NumberOne @context.Operator @context.NumberTwo = @context.Result</h1>
+            </div>
+            <div class="card-footer">
+                <h3>@context.CalculationTime</h3>
+               
+            </div>
+        </div>
+    </Virtualize>
+
+
+
+    @code {
+    decimal numberOne;
+    decimal numberTwo;
+    public string SelectedOption { get; set; }
+    public decimal Result { get; set; }
+    public CalcService CalcService { get; set; } = new CalcService(new CalcHistoryService());
+
+    public void AssignResultValue()
+    {
+        Result = CalcService.Calculate(numberOne, numberTwo, SelectedOption);
+    }
+
+    }
